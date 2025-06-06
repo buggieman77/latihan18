@@ -8,6 +8,6 @@ button {
   font-size: 3rem;
   cursor: pointer;
   @include m.flexbox($dir: row);
-  @include m.shape(rectangle, 300px, 30px);
+  @include m.shape(rectangle, 450px, 30px);
   @include m.background(rgb(22, 182, 22), $txt: white, $btn: true);
 }
