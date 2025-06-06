@@ -1,0 +1,54 @@
+/* ============================
+   SCSS Mixins
+   ============================ */
+@use "sass:color";
+@use "sass:map";
+@use "./variables" as var;
+
+@mixin flexbox($j: center, $a: center, $dir: row) {
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+  @if $dir == column {
+    flex-direction: $dir;
+  }
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin background($bg, $txt: false, $btn: false, $lighten: false) {
+  @if $btn {
+    @include button-bg($bg, $lighten);
+  } @else {
+    background-color: $bg;
+  }
+  @if $txt {
+    color: $txt;
+  }
+}
+
+@mixin button-bg($color, $light) {
+  background-color: $color;
+  &:hover {
+    background-color: color.adjust($color, $lightness: if($light, 10%, -15%));
+  }
+}
+
+@mixin shape($shape, $width, $radius: 0px) {
+  @if $shape == circle {
+    aspect-ratio: 1/1;
+    width: $width;
+    border-radius: 50%;
+  } @else if $shape == square {
+    aspect-ratio: 1/1;
+    width: $width;
+  } @else {
+    aspect-ratio: 16/9;
+    width: $width;
+    border-radius: $radius;
+  }
+}
